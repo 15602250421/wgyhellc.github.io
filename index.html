@@ -1,368 +1,283 @@
 <html>
-<center><embed flashvars="letter=15602250421" src="http://www.widgeo.net/effets/4.swf" quality="high" wmode="transparent" width="800" height="80" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">    <script type="text/javascript">if (typeof document.onselectstart!="undefined") {  document.onselectstart=new Function ("return false");  }  else{  document.onmousedown=new Function ("return false");  document.onmouseup=new Function ("return true");  }    </script>        <div align="center"> <p></center>
+		<style type="text/css">
+			< !-- .STYLE1 {
+				font-size: medium
+			}
 
-<embed src="axw.swf" tppabs="http://www.986x.com/axw.swf" width="1000" height="1000" align="absmiddle" style="LEFT:6px; POSITION: absolute; TOP:11px; height: 650px; width: 1250px;" type="application/x-shockwave-flash" wmode="transparent" quality="high" ;="">
-    
-<html> 
+			-->
+		</style>
+		<center><br><br><br><br>
+			<HEAD>
+				<title>By：hellc 明天是夏天</title>
+				<html>
+					<head>
+						<script LANGUAGE="JavaScript">
+							function click() {
+								if (event.button == 2) {
+									alert('By：hellc 明天是夏天');
+								}
+							}
+							document.onmousedown = click // -->
+						</script>
 
-<style type="text/css"> 
+						<script type="text/javascript">
+							(function() {
+								var msg = "By:hellc 明天是夏天";
+								var size = 20;
+								var circleY = 0.75;
+								var circleX = 2;
+								var letter_spacing = 5;
+								var diameter = 10;
+								var rotation = 0.4;
 
-<!--
+								var speed = 0.3;
 
-.STYLE1 {font-size: medium}
+								if (!window.addEventListener && !window.attachEvent || !document.createElement) return;
 
--->
+								msg = msg.split('');
 
-</style> 
+								var n = msg.length - 1,
+									a = Math.round(size * diameter * 0.208333),
+									currStep = 20,
 
-<center><br><br><br><br><HEAD> 
+									ymouse = a * circleY + 20,
+									xmouse = a * circleX + 20,
+									y = [],
+									x = [],
+									Y = [],
+									X = [],
 
-<title>By：hellc 明天是夏天</title> 
-<html>
-<head>
-<script LANGUAGE="JavaScript">
-function click() { if (event.button==2) 
-{alert('By：hellc 明天是夏天');
- } 
-} 
-document.onmousedown=click // --> 
-</script> 
+									o = document.createElement('div'),
+									oi = document.createElement('div'),
 
+									b = document.compatMode && document.compatMode != "BackCompat" ? document.documentElement : document.body,
 
+									mouse = function(e) {
 
+										e = e || window.event;
 
-<script type="text/javascript"> 
+										ymouse = !isNaN(e.pageY) ? e.pageY : e.clientY; // y-position
 
-;(function(){
+										xmouse = !isNaN(e.pageX) ? e.pageX : e.clientX; // x-position
 
-// Your message here (QUOTED STRING)
+									},
 
-var msg = "By:hellc 明天是夏天";
+									makecircle = function() { // rotation/positioning
 
+										if (init.nopy) {
 
-// Set font's style size for calculating dimensions
+											o.style.top = (b || document.body).scrollTop + 'px';
 
-// Set to number of desired pixels font size (decimal and negative numbers not allowed)
+											o.style.left = (b || document.body).scrollLeft + 'px';
 
-var size = 20;
+										};
 
-// Set both to 1 for plain circle, set one of them to 2 for oval
+										currStep -= rotation;
 
-// Other numbers & decimals can have interesting effects, keep these low (0 to 3)
+										for (var d, i = n; i > -1; --i) { // makes the circle
 
-var circleY = 0.75; var circleX = 2;
+											d = document.getElementById('iemsg' + i).style;
 
-// The larger this divisor, the smaller the spaces between letters
+											d.top = Math.round(y[i] + a * Math.sin((currStep + i) / letter_spacing) * circleY - 15) + 'px';
 
-// (decimals allowed, not negative numbers)
+											d.left = Math.round(x[i] + a * Math.cos((currStep + i) / letter_spacing) * circleX) + 'px';
 
-var letter_spacing = 5;
+										};
 
-// The larger this multiplier, the bigger the circle/oval
+									},
 
-// (decimals allowed, not negative numbers, some rounding is applied)
+									drag = function() { // makes the resistance
 
-var diameter = 10;
+										y[0] = Y[0] += (ymouse - Y[0]) * speed;
 
-var rotation = 0.4;
+										x[0] = X[0] += (xmouse - 20 - X[0]) * speed;
 
-var speed = 0.3;
+										for (var i = n; i > 0; --i) {
 
-if (!window.addEventListener && !window.attachEvent || !document.createElement) return;
+											y[i] = Y[i] += (y[i - 1] - Y[i]) * speed;
 
-msg = msg.split('');
+											x[i] = X[i] += (x[i - 1] - X[i]) * speed;
 
-var n = msg.length - 1, a = Math.round(size * diameter * 0.208333), currStep = 20,
+										};
 
-ymouse = a * circleY + 20, xmouse = a * circleX + 20, y = [], x = [], Y = [], X = [],
+										makecircle();
 
-o = document.createElement('div'), oi = document.createElement('div'),
+									},
 
-b = document.compatMode && document.compatMode != "BackCompat"? document.documentElement : document.body,
+									init = function() { // appends message divs, & sets initial values for positioning arrays
 
-mouse = function(e){
+										if (!isNaN(window.pageYOffset)) {
 
- e = e || window.event;
+											ymouse += window.pageYOffset;
 
- ymouse = !isNaN(e.pageY)? e.pageY : e.clientY; // y-position
+											xmouse += window.pageXOffset;
 
- xmouse = !isNaN(e.pageX)? e.pageX : e.clientX; // x-position
+										} else init.nopy = true;
 
-},
+										for (var d, i = n; i > -1; --i) {
 
-makecircle = function(){ // rotation/positioning
+											d = document.createElement('div');
+											d.id = 'iemsg' + i;
 
- if(init.nopy){
+											d.style.height = d.style.width = a + 'px';
 
-  o.style.top = (b || document.body).scrollTop + 'px';
+											d.appendChild(document.createTextNode(msg[i]));
 
-  o.style.left = (b || document.body).scrollLeft + 'px';
+											oi.appendChild(d);
+											y[i] = x[i] = Y[i] = X[i] = 0;
 
- };
+										};
 
- currStep -= rotation;
+										o.appendChild(oi);
+										document.body.appendChild(o);
 
- for (var d, i = n; i > -1; --i){ // makes the circle
+										setInterval(drag, 25);
 
-  d = document.getElementById('iemsg' + i).style;
+									},
 
-  d.top = Math.round(y[i] + a * Math.sin((currStep + i) / letter_spacing) * circleY - 15) + 'px';
+									ascroll = function() {
 
-  d.left = Math.round(x[i] + a * Math.cos((currStep + i) / letter_spacing) * circleX) + 'px';
+										ymouse += window.pageYOffset;
 
- };
+										xmouse += window.pageXOffset;
 
-},
+										window.removeEventListener('scroll', ascroll, false);
 
-drag = function(){ // makes the resistance
+									};
 
- y[0] = Y[0] += (ymouse - Y[0]) * speed;
+								o.id = 'outerCircleText';
+								o.style.fontSize = size + 'px';
 
- x[0] = X[0] += (xmouse - 20 - X[0]) * speed;
+								if (window.addEventListener) {
 
- for (var i = n; i > 0; --i){
+									window.addEventListener('load', init, false);
 
-  y[i] = Y[i] += (y[i-1] - Y[i]) * speed;
+									document.addEventListener('mouseover', mouse, false);
 
-  x[i] = X[i] += (x[i-1] - X[i]) * speed;
+									document.addEventListener('mousemove', mouse, false);
 
- };
+									if (/Apple/.test(navigator.vendor))
 
- makecircle();
+										window.addEventListener('scroll', ascroll, false);
+							} else if (window.attachEvent) {
+									window.attachEvent('onload', init);
+									document.attachEvent('onmousemove', mouse);
+								};
+							})();
+						</script>
+						<script type="text/javascript">
+							function toSpans(span) {
 
-},
+								var str = span.firstChild.data;
 
-init = function(){ // appends message divs, & sets initial values for positioning arrays
+								var a = str.length;
 
- if(!isNaN(window.pageYOffset)){
+								span.removeChild(span.firstChild);
 
-  ymouse += window.pageYOffset;
+								for (var i = 0; i < a; i++) {
 
-  xmouse += window.pageXOffset;
+									var theSpan = document.createElement("SPAN");
 
- } else init.nopy = true;
+									theSpan.appendChild(document.createTextNode(str.charAt(i)));
 
- for (var d, i = n; i > -1; --i){
+									span.appendChild(theSpan);
 
-  d = document.createElement('div'); d.id = 'iemsg' + i;
+								}
 
-  d.style.height = d.style.width = a + 'px';
+							}
 
-  d.appendChild(document.createTextNode(msg[i]));
+							function RainbowSpan(span, hue, deg, brt, spd, hspd) {
 
-  oi.appendChild(d); y[i] = x[i] = Y[i] = X[i] = 0;
+								this.deg = (deg == null ? 360 : Math.abs(deg));
 
- };
+								this.hue = (hue == null ? 0 : Math.abs(hue) % 360);
 
- o.appendChild(oi); document.body.appendChild(o);
+								this.hspd = (hspd == null ? 3 : Math.abs(hspd) % 360);
 
- setInterval(drag, 25);
+								this.length = span.firstChild.data.length;
 
-},
+								this.span = span;
 
-ascroll = function(){
+								this.speed = (spd == null ? 50 : Math.abs(spd));
 
- ymouse += window.pageYOffset;
+								this.hInc = this.deg / this.length;
 
- xmouse += window.pageXOffset;
+								this.brt = (brt == null ? 255 : Math.abs(brt) % 256);
 
- window.removeEventListener('scroll', ascroll, false);
+								this.timer = null;
 
-};
+								toSpans(span);
 
-o.id = 'outerCircleText'; o.style.fontSize = size + 'px';
+								this.moveRainbow();
 
-if (window.addEventListener){
+							}
 
- window.addEventListener('load', init, false);
+							RainbowSpan.prototype.moveRainbow = function() {
 
- document.addEventListener('mouseover', mouse, false);
+								if (this.hue > 359) this.hue -= 360;
 
- document.addEventListener('mousemove', mouse, false);
+								var color;
 
-  if (/Apple/.test(navigator.vendor))
+								var b = this.brt;
 
-   window.addEventListener('scroll', ascroll, false);
+								var a = this.length;
 
-}
+								var h = this.hue;
 
-else if (window.attachEvent){
 
- window.attachEvent('onload', init);
 
- document.attachEvent('onmousemove', mouse);
+								for (var i = 0; i < a; i++) {
 
-};
 
-})();
 
-</script> 
+									if (h > 359) h -= 360;
 
-<script type="text/javascript"> 
 
-<!-- Begin
 
-/*
+									if (h < 60) {
+										color = Math.floor(((h) / 60) * b);
+										red = b;
+										grn = color;
+										blu = 0;
+									} else if (h < 120) {
+										color = Math.floor(((h - 60) / 60) * b);
+										red = b - color;
+										grn = b;
+										blu = 0;
+									} else if (h < 180) {
+										color = Math.floor(((h - 120) / 60) * b);
+										red = 0;
+										grn = b;
+										blu = color;
+									} else if (h < 240) {
+										color = Math.floor(((h - 180) / 60) * b);
+										red = 0;
+										grn = b - color;
+										blu = b;
+									} else if (h < 300) {
+										color = Math.floor(((h - 240) / 60) * b);
+										red = color;
+										grn = 0;
+										blu = b;
+									} else {
+										color = Math.floor(((h - 300) / 60) * b);
+										red = b;
+										grn = 0;
+										blu = b - color;
+									}
+									h += this.hInc;
+								this.span.childNodes[i].style.color = "rgb(" + red + ", " + grn + ", " + blu + ")";
+								}
+								this.hue += this.hspd;
+							}
 
- * Notes on hue
+						</script>
 
- *
+					</HEAD>
 
- * This script uses hue rotation in the following manner:
+			<BODY>
 
- * hue=0   is red (#FF0000)
-
- * hue=60  is yellow (#FFFF00)
-
- * hue=120 is green (#00FF00)
-
- * hue=180 is cyan (#00FFFF)
-
- * hue=240 is blue (#0000FF)
-
- * hue=300 is magenta (#FF00FF)
-
- * hue=360 is hue=0 (#FF0000)
-
- *
-
- * Notes on the script
-
- *
-
- * This script should function in any browser that supports document.getElementById
-
- * It has been tested in Netscape7, Mozilla Firefox 1.0, and Internet Explorer 6
-
- *
-
- * Accessibility
-
- *
-
- * The script does not write the string out, but rather takes it from an existing
-
- * HTML element. Therefore, users with javascript disabled will not be adverely affected.
-
- * They just won't get the pretty colors.
-
- */
-
- 
-
-/*
-
- * splits par.firstChild.data into 1 span for each letter
-
- * ARGUMENTS
-
- *   span - HTML element containing a text node as the only element
-
- */
-
-function toSpans(span) {
-
-  var str=span.firstChild.data;
-
-  var a=str.length;
-
-  span.removeChild(span.firstChild);
-
-  for(var i=0; i<a; i++) {
-
-    var theSpan=document.createElement("SPAN");
-
-    theSpan.appendChild(document.createTextNode(str.charAt(i)));
-
-    span.appendChild(theSpan);
-
-  }
-
-}
-
-function RainbowSpan(span, hue, deg, brt, spd, hspd) {
-
-    this.deg=(deg==null?360:Math.abs(deg));
-
-    this.hue=(hue==null?0:Math.abs(hue)%360);
-
-    this.hspd=(hspd==null?3:Math.abs(hspd)%360);
-
-    this.length=span.firstChild.data.length;
-
-    this.span=span;
-
-    this.speed=(spd==null?50:Math.abs(spd));
-
-    this.hInc=this.deg/this.length;
-
-    this.brt=(brt==null?255:Math.abs(brt)%256);
-
-    this.timer=null;
-
-    toSpans(span);
-
-    this.moveRainbow();
-
-}
-
-RainbowSpan.prototype.moveRainbow = function() {
-
-  if(this.hue>359) this.hue-=360;
-
-  var color;
-
-  var b=this.brt;
-
-  var a=this.length;
-
-  var h=this.hue;
-
- 
-
-  for(var i=0; i<a; i++) {
-
- 
-
-    if(h>359) h-=360;
-
- 
-
-    if(h<60) { color=Math.floor(((h)/60)*b); red=b;grn=color;blu=0; }
-
-    else if(h<120) { color=Math.floor(((h-60)/60)*b); red=b-color;grn=b;blu=0; }
-
-    else if(h<180) { color=Math.floor(((h-120)/60)*b); red=0;grn=b;blu=color; }
-
-    else if(h<240) { color=Math.floor(((h-180)/60)*b); red=0;grn=b-color;blu=b; }
-
-    else if(h<300) { color=Math.floor(((h-240)/60)*b); red=color;grn=0;blu=b; }
-
-    else { color=Math.floor(((h-300)/60)*b); red=b;grn=0;blu=b-color; }
-
- 
-
-    h+=this.hInc;
-
- 
-
-    this.span.childNodes[i].style.color="rgb("+red+", "+grn+", "+blu+")";
-
-  }
-
-  this.hue+=this.hspd;
-
-}
-
-// End -->
-
-</script> 
-
-</HEAD> 
-
-<BODY> 
-
-<style> 
+	<style>
 
 body {
 
@@ -392,430 +307,448 @@ margin-right: 0px;
 
 }
 
-</style> 
+</style>
 
-<div align="center">
-  <h1 id="r1">China-hackers</h1> 
+				<div align="center">
+					<h1 id="r1">China-hackers</h1>
 
-</div> 
+				</div>
 
-<script type="text/javascript"> 
+				<script type="text/javascript">
+					var r1 = document.getElementById("r1"); //get span to apply rainbow
 
-var r1=document.getElementById("r1"); //get span to apply rainbow
+					var myRainbowSpan = new RainbowSpan(r1, 0, 360, 255, 50, 18); //apply static rainbow effect
 
-var myRainbowSpan=new RainbowSpan(r1, 0, 360, 255, 50, 18); //apply static rainbow effect
+					myRainbowSpan.timer = window.setInterval("myRainbowSpan.moveRainbow()", myRainbowSpan.speed);
+				</script>
 
-myRainbowSpan.timer=window.setInterval("myRainbowSpan.moveRainbow()", myRainbowSpan.speed);
+				<div align="center">
 
-</script> 
+					<p class="STYLE1" id="r2"> 《By:hellc 明天是夏天 QQ：278945398
+						》 </p>
 
-<div align="center"> 
+				</div>
 
-<p class="STYLE1" id="r2"> 《By:hellc 明天是夏天 QQ：278945398
-  》 </p> 
+				<script type="text/javascript">
+					var r2 = document.getElementById("r2"); //get span to apply rainbow
 
-</div> 
+					var myRainbowSpan2 = new RainbowSpan(r2, 0, 360, 255, 50, 348); //apply static rainbow effect
 
-<script type="text/javascript"> 
+					myRainbowSpan2.timer = window.setInterval("myRainbowSpan2.moveRainbow()", myRainbowSpan2.speed);
+				</script>
 
-var r2=document.getElementById("r2"); //get span to apply rainbow
+	</html>
 
-var myRainbowSpan2=new RainbowSpan(r2, 0, 360, 255, 50, 348); //apply static rainbow effect
+	<html>
 
-myRainbowSpan2.timer=window.setInterval("myRainbowSpan2.moveRainbow()", myRainbowSpan2.speed);
+		<body bgcolor="#000000">
 
-</script> 
+			<body onContextMenu="alert(That is me-------11111111111111111111111111111'); return false" NOOP="if (window.event != null && window.event.button == 2) alert ('Thanks...');">
 
-</html> 
+				<style type="text/css">
+					/* Circle Text Styles */
 
-  <html> 
+					#outerCircleText {
 
-<body bgcolor="#000000"> 
+						/* Optional - DO NOT SET FONT-SIZE HERE, SET IT IN THE SCRIPT */
 
-<body onContextMenu="alert(That is me-------11111111111111111111111111111'); return false" NOOP="if (window.event != null && window.event.button == 2) alert ('Thanks...');"> 
+						font-style: italic;
 
-<style type="text/css"> 
+						font-weight: bold;
 
+						font-family: 'comic sans ms', verdana, arial;
 
-#outerCircleText {
+						color: #ff0000;
 
-font-style: italic;
+						/* End Optional */
 
-font-weight: bold;
+						/* Start Required - Do Not Edit */
 
-font-family: 'comic sans ms', verdana, arial;
+						position: absolute;
+						top: 0;
+						left: 0;
+						z-index: 3000;
+						cursor: default;
+					}
 
-color: #ff0000;
+					#outerCircleText div {
+						position: relative;
+					}
 
-position: absolute;top: 0;left: 0;z-index: 3000;cursor: default;}
+					#outerCircleText div div {
+						position: absolute;
+						top: 0;
+						left: 0;
+						text-align: center;
+					}
 
-#outerCircleText div {position: relative;}
+					/* End Required */
 
-#outerCircleText div div {position: absolute;top: 0;left: 0;text-align: center;}
+					/* End Circle Text Styles */
+				</style>
 
+				<script type="text/javascript">
+					;
+					(function() {
 
-</style> 
+							// Your message here (QUOTED STRING)
 
-<script type="text/javascript"> 
+							var msg = "";
 
-;(function(){
+							/* THE REST OF THE EDITABLE VALUES BELOW ARE ALL UNQUOTED NUMBERS */
 
+							// Set font's style size for calculating dimensions
 
-var msg = "";
+							// Set to number of desired pixels font size (decimal and negative numbers not allowed)
 
-var size = 24;
+							var size = 24;
 
-var circleY = 0.75; var circleX = 2;
-var letter_spacing = 5;
+							// Set both to 1 for plain circle, set one of them to 2 for oval
 
-var diameter = 10;
+							// Other numbers & decimals can have interesting effects, keep these low (0 to 3)
 
-var rotation = 0.4;
+							var circleY = 0.75;
+							var circleX = 2;
 
-var speed = 0.3;
+							// The larger this divisor, the smaller the spaces between letters
 
-if (!window.addEventListener && !window.attachEvent || !document.createElement) return;
+							// (decimals allowed, not negative numbers)
 
-msg = msg.split(');
+							var letter_spacing = 5;
 
-var n = msg.length - 1, a = Math.round(size * diameter * 0.208333), currStep = 20,
+							// The larger this multiplier, the bigger the circle/oval
 
-ymouse = a * circleY + 20, xmouse = a * circleX + 20, y = [], x = [], Y = [], X = [],
+							// (decimals allowed, not negative numbers, some rounding is applied)
 
-o = document.createElement('div'), oi = document.createElement('div'),
+							var diameter = 10;
 
-b = document.compatMode && document.compatMode != "BackCompat"? document.documentElement : document.body,
+							// Rotation speed, set it negative if you want it to spin clockwise (decimals allowed)
 
-mouse = function(e){
+							var rotation = 0.4;
 
- e = e || window.event;
+							// This is not the rotation speed, its the reaction speed, keep low!
 
- ymouse = !isNaN(e.pageY)? e.pageY : e.clientY; 
+							// Set this to 1 or a decimal less than one (decimals allowed, not negative numbers)
 
- xmouse = !isNaN(e.pageX)? e.pageX : e.clientX; 
+							var speed = 0.3;
 
-},
+							if (!window.addEventListener && !window.attachEvent || !document.createElement) return;
 
-makecircle = function(){ 
+							msg = msg.split(');
 
- if(init.nopy){
+								var n = msg.length - 1, a = Math.round(size * diameter * 0.208333), currStep = 20,
 
-  o.style.top = (b || document.body).scrollTop + 'px';
+									ymouse = a * circleY + 20, xmouse = a * circleX + 20, y = [], x = [], Y = [], X = [],
 
-  o.style.left = (b || document.body).scrollLeft + 'px';
+									o = document.createElement('div'), oi = document.createElement('div'),
 
- };
+									b = document.compatMode && document.compatMode != "BackCompat" ? document.documentElement : document.body,
 
- currStep -= rotation;
+									mouse = function(e) {
 
- for (var d, i = n; i > -1; --i){ // makes the circle
+										e = e || window.event;
 
-  d = document.getElementById('iemsg' + i).style;
+										ymouse = !isNaN(e.pageY) ? e.pageY : e.clientY; // y-position
 
-  d.top = Math.round(y[i] + a * Math.sin((currStep + i) / letter_spacing) * circleY - 15) + 'px';
+										xmouse = !isNaN(e.pageX) ? e.pageX : e.clientX; // x-position
 
-  d.left = Math.round(x[i] + a * Math.cos((currStep + i) / letter_spacing) * circleX) + 'px';
+									},
 
- };
+									makecircle = function() { // rotation/positioning
 
-},
+										if (init.nopy) {
 
-drag = function(){ // makes the resistance
+											o.style.top = (b || document.body).scrollTop + 'px';
 
- y[0] = Y[0] += (ymouse - Y[0]) * speed;
+											o.style.left = (b || document.body).scrollLeft + 'px';
 
- x[0] = X[0] += (xmouse - 20 - X[0]) * speed;
+										};
 
- for (var i = n; i > 0; --i){
+										currStep -= rotation;
 
-  y[i] = Y[i] += (y[i-1] - Y[i]) * speed;
+										for (var d, i = n; i > -1; --i) { // makes the circle
 
-  x[i] = X[i] += (x[i-1] - X[i]) * speed;
+											d = document.getElementById('iemsg' + i).style;
 
- };
+											d.top = Math.round(y[i] + a * Math.sin((currStep + i) / letter_spacing) * circleY - 15) + 'px';
 
- makecircle();
+											d.left = Math.round(x[i] + a * Math.cos((currStep + i) / letter_spacing) * circleX) + 'px';
 
-},
+										};
 
-init = function(){ // appends message divs, & sets initial values for positioning arrays
+									},
 
- if(!isNaN(window.pageYOffset)){
+									drag = function() { // makes the resistance
 
-  ymouse += window.pageYOffset;
+										y[0] = Y[0] += (ymouse - Y[0]) * speed;
 
-  xmouse += window.pageXOffset;
+										x[0] = X[0] += (xmouse - 20 - X[0]) * speed;
 
- } else init.nopy = true;
+										for (var i = n; i > 0; --i) {
 
- for (var d, i = n; i > -1; --i){
+											y[i] = Y[i] += (y[i - 1] - Y[i]) * speed;
 
-  d = document.createElement('div'); d.id = 'iemsg' + i;
+											x[i] = X[i] += (x[i - 1] - X[i]) * speed;
 
-  d.style.height = d.style.width = a + 'px';
+										};
 
-  d.appendChild(document.createTextNode(msg[i]));
+										makecircle();
 
-  oi.appendChild(d); y[i] = x[i] = Y[i] = X[i] = 0;
+									},
 
- };
+									init = function() { // appends message divs, & sets initial values for positioning arrays
 
- o.appendChild(oi); document.body.appendChild(o);
+										if (!isNaN(window.pageYOffset)) {
 
- setInterval(drag, 25);
+											ymouse += window.pageYOffset;
 
-},
+											xmouse += window.pageXOffset;
 
-ascroll = function(){
+										} else init.nopy = true;
 
- ymouse += window.pageYOffset;
+										for (var d, i = n; i > -1; --i) {
 
- xmouse += window.pageXOffset;
+											d = document.createElement('div');
+											d.id = 'iemsg' + i;
 
- window.removeEventListener('scroll', ascroll, false);
+											d.style.height = d.style.width = a + 'px';
 
-};
+											d.appendChild(document.createTextNode(msg[i]));
 
-o.id = 'outerCircleText'; o.style.fontSize = size + 'px';
+											oi.appendChild(d);
+											y[i] = x[i] = Y[i] = X[i] = 0;
 
-if (window.addEventListener){
+										};
 
- window.addEventListener('load', init, false);
+										o.appendChild(oi);
+										document.body.appendChild(o);
 
- document.addEventListener('mouseover', mouse, false);
+										setInterval(drag, 25);
 
- document.addEventListener('mousemove', mouse, false);
+									},
 
-  if (/Apple/.test(navigator.vendor))
+									ascroll = function() {
 
-   window.addEventListener('scroll', ascroll, false);
+										ymouse += window.pageYOffset;
 
-}
+										xmouse += window.pageXOffset;
 
-else if (window.attachEvent){
+										window.removeEventListener('scroll', ascroll, false);
 
- window.attachEvent('onload', init);
+									};
 
- document.attachEvent('onmousemove', mouse);
+								o.id = 'outerCircleText'; o.style.fontSize = size + 'px';
 
-};
+								if (window.addEventListener) {
 
-})();
+									window.addEventListener('load', init, false);
 
-</script> 
+									document.addEventListener('mouseover', mouse, false);
 
-<center><div style="border: 2px solid ; overflow: auto; color: black; background-color: black; width: 80%;"> 
+									document.addEventListener('mousemove', mouse, false);
 
-<h2> 
+									if (/Apple/.test(navigator.vendor))
 
-<center> 
+										window.addEventListener('scroll', ascroll, false);
 
-<script language="JavaScript1.2"> 
+								} else if (window.attachEvent) {
 
-var message="‖-By:hellc 明天是夏天 QQ：278945398 ----------青  春  因  梦  想  而  精  彩-‖"
+									window.attachEvent('onload', init);
 
-var neonbasecolor="white"
+									document.attachEvent('onmousemove', mouse);
 
-var neontextcolor="#00EBC0"
+								};
 
-var flashspeed=100  //in milliseconds
+							})();
+				</script>
 
-var n=0
+				<center>
+					<div style="border: 2px solid ; overflow: auto; color: black; background-color: black; width: 80%;">
 
-if (document.all||document.getElementById){
+						<h2>
 
-document.write('<font color="'+neonbasecolor+'">')
+							<center>
 
-for (m=0;m<message.length;m++)
+								<script language="JavaScript1.2">
+									var message = "‖-By:hellc 明天是夏天 QQ：278945398 ----------青  春  因  梦  想  而  精  彩-‖"
 
-document.write('<span id="neonlight'+m+'">'+message.charAt(m)+'</span>')
+									var neonbasecolor = "white"
 
-document.write('</font>')
+									var neontextcolor = "#00EBC0"
 
-}
+									var flashspeed = 100 //in milliseconds
 
-else
+									var n = 0
 
-document.write(message)
+									if (document.all || document.getElementById) {
 
-function crossref(number){
+										document.write('<font color="' + neonbasecolor + '">')
 
-var crossobj=document.all? eval("document.all.neonlight"+number) : document.getElementById("neonlight"+number)
+										for (m = 0; m < message.length; m++)
 
-return crossobj
+											document.write('<span id="neonlight' + m + '">' + message.charAt(m) + '</span>')
 
-}
+										document.write('</font>')
 
-function neon(){
+									} else
 
-//Change all letters to base color
+										document.write(message)
 
-if (n==0){
+									function crossref(number) {
 
-for (m=0;m<message.length;m++)
+										var crossobj = document.all ? eval("document.all.neonlight" + number) : document.getElementById("neonlight" +
+											number)
 
-//eval("document.all.neonlight"+m).style.color=neonbasecolor
+										return crossobj
 
-crossref(m).style.color=neonbasecolor
+									}
 
-}
+									function neon() {
 
-//cycle through and change individual letters to neon color
+										//Change all letters to base color
 
-crossref(n).style.color=neontextcolor
+										if (n == 0) {
 
-if (n<message.length-1)
+											for (m = 0; m < message.length; m++)
 
-n++
+												//eval("document.all.neonlight"+m).style.color=neonbasecolor
 
-else{
+												crossref(m).style.color = neonbasecolor
 
-n=0
+										}
 
-clearInterval(flashing)
+										//cycle through and change individual letters to neon color
 
-setTimeout("beginneon()",1500)
+										crossref(n).style.color = neontextcolor
 
-return
+										if (n < message.length - 1)
 
-}
+											n++
 
-}
+										else {
 
-function beginneon(){
+											n = 0
 
-if (document.all||document.getElementById)
+											clearInterval(flashing)
 
-flashing=setInterval("neon()",flashspeed)
+											setTimeout("beginneon()", 1500)
 
-}
+											return
 
-beginneon()
+										}
 
-</script></h2> 
+									}
 
-<img src="http://g.picphotos.baidu.com/album/h%3D370%3Bq%3D90%3Bg%3D0/sign=4b1649b1972397ddc9799e0369b9c38a/adaf2edda3cc7cd9a33e448f3f01213fb80e9150.jpg" align="middle" border="0"><br /> 
+									function beginneon() {
 
-    <td><center> 
+										if (document.all || document.getElementById)
 
-<FONT face="Monotype Corsiva" size="3" color="#00EBC0"><br><br>By:hellc 明天是夏天 QQ：278945398<br/><span style="color:#00EBC0"><span style="font-size:14px;"><span style="font-family:comic sans ms,cursive;"><span style="font-family:comic sans ms,cursive;">小越网络技术交流群 473954594</strong></span></span><br>
-</pre>
-</font>
-</center>
-<center>
-<font face=calibri color="#00EBC0" size=2>
+											flashing = setInterval("neon()", flashspeed)
 
-<br> Hello, administrator <br>
-<br> Your website loopholes hope you timely repair<br>
-<br> here I say sorry to you I hope you can understand <br>
-<br> We intended only to want to let our country Internet cause further <br>
+									}
 
-            <center><font color="#00EBC0">==================================================================================================================================</font></center><br>
- 
- 
-            <embed src="2057748.swf" tppabs="http://l.5sing.com/player/true/bz/2057748.swf" width=0 height=0 border="0" loop=-2></embed> 
+									beginneon()
+								</script>
+						</h2>
 
-<tr> 
+						<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3261240060,2581663562&fm=26&gp=0.jpg"
+						 align="middle" border="0"><br />
 
-</tr> 
+						<td>
+							<center>
 
-</table> 
+								<FONT face="Monotype Corsiva" size="3" color="#00EBC0"><br><br>By:hellc 明天是夏天 QQ：278945398<br /><span style="color:#00EBC0"><span
+										 style="font-size:14px;"><span style="font-family:comic sans ms,cursive;"><span style="font-family:comic sans ms,cursive;">小越网络技术交流群
+													473954594</strong></span></span><br>
+											</pre>
+								</font>
+							</center>
+							<center>
+								<font face=calibri color="#00EBC0" size=2>
 
-<br /> 
+									<br> Hello, administrator <br>
+									<br> Your website loopholes hope you timely repair<br>
+									<br> here I say sorry to you I hope you can understand <br>
+									<br> We intended only to want to let our country Internet cause further <br>
 
-</script> <script type='text/javascript'> 
+									<center>
+										<font color="#00EBC0">==================================================================================================================================</font>
+									</center><br>
+									<tr>
+									</tr>
+									</table>
+									<br />
 
-/*Important Function to blend the tabs in and out*/
+									</script>
+									<script type='text/javascript'>
+										/*Important Function to blend the tabs in and out*/
 
-function blendoff(idname) {document.getElementById(idname).style.display = 'none';}
+										function blendoff(idname) {
+											document.getElementById(idname).style.display = 'none';
+										}
 
-function blendon(idname) {document.getElementById(idname).style.display = 'block';}
+										function blendon(idname) {
+											document.getElementById(idname).style.display = 'block';
+										}
+									</script>
 
-</script> 
+									<script type='text/javascript'>
+										/*Function for our Tabmenu with 4 Tabs*/
 
-<script type='text/javascript'> 
+										function swichtabs(wert) {
 
-/*Function for our Tabmenu with 4 Tabs*/
+											if (wert == '1') {
 
-function swichtabs(wert) {
+												document.getElementById('tablink1').className = 'tab1 tabactive';
 
-if (wert=='1'){
+												document.getElementById('tablink2').className = 'tab2';
 
-document.getElementById('tablink1').className='tab1 tabactive';
+												document.getElementById('tablink3').className = 'tab3';
 
-document.getElementById('tablink2').className='tab2';
+												document.getElementById('tablink4').className = 'tab4';
 
-document.getElementById('tablink3').className='tab3';
+											} else if (wert == '2') {
 
-document.getElementById('tablink4').className='tab4';
+												document.getElementById('tablink1').className = 'tab1';
 
-}else if (wert=='2'){
+												document.getElementById('tablink2').className = 'tab2 tabactive';
 
-document.getElementById('tablink1').className='tab1';
+												document.getElementById('tablink3').className = 'tab3';
 
-document.getElementById('tablink2').className='tab2 tabactive';
+												document.getElementById('tablink4').className = 'tab4';
 
-document.getElementById('tablink3').className='tab3';
+											} else if (wert == '3') {
 
-document.getElementById('tablink4').className='tab4';
+												document.getElementById('tablink1').className = 'tab1';
 
-}else if (wert=='3'){
+												document.getElementById('tablink2').className = 'tab2';
 
-document.getElementById('tablink1').className='tab1';
+												document.getElementById('tablink3').className = 'tab3 tabactive';
 
-document.getElementById('tablink2').className='tab2';
+												document.getElementById('tablink4').className = 'tab4';
 
-document.getElementById('tablink3').className='tab3 tabactive';
+											} else if (wert == '4') {
 
-document.getElementById('tablink4').className='tab4';
+												document.getElementById('tablink1').className = 'tab1';
 
-} else if (wert=='4'){
+												document.getElementById('tablink2').className = 'tab2';
 
-document.getElementById('tablink1').className='tab1';
+												document.getElementById('tablink3').className = 'tab3';
 
-document.getElementById('tablink2').className='tab2';
+												document.getElementById('tablink4').className = 'tab4 tabactive';
 
-document.getElementById('tablink3').className='tab3';
+											}
 
-document.getElementById('tablink4').className='tab4 tabactive';
+										}
+									</script>
 
-}
-
-}
-
-</script> 
-
-<SCRIPT language=JavaScript type=text/javascript> 
-
-<!--
-
-var rows=1; // must be an odd number
-
-var speed=10; // lower is faster
-
-var reveal=2; // between 0 and 2 only. The higher, the faster the word appears
-
-var effectalign="default" //enter "center" to center it.
-
-var w3c=document.getElementById && !window.opera;;
-
-var ie45=document.all && !window.opera;
-
-var ma_tab, matemp, ma_bod, ma_row, x, y, columns, ma_txt, ma_cho;
-
-var m_coch=new Array();
-
-var m_copo=new Array();
-
-function matrix() {
-
-if (!w3c && !ie45) return
-
-var matrix=(w3c)?document.getElementById("matrix"):document.all["matrix"];
-
-ma_txt=(w3c)?matrix.firstChild.nodeValue:matrix.innerHTML;
-
-ma_txt=" "+ma_txt+" ";
+									<SCRIPT language=JavaScript type=text/javascript> <!-- var rows=1; // must be an odd number var speed=10; //
+									 lower is faster var reveal=2; // between 0 and 2 only. The higher, the faster the word appears var
+									 effectalign="default" //enter "center" to center it. var w3c=document.getElementById && !window.opera;; var
+									 ie45=document.all && !window.opera; var ma_tab, matemp, ma_bod, ma_row, x, y, columns, ma_txt, ma_cho; var
+									 m_coch=new Array(); var m_copo=new Array(); function matrix() { if (!w3c && !ie45) return var matrix=(w3c)?document.getElementById("matrix"):document.all["matrix"];
+									 ma_txt=(w3c)?matrix.firstChild.nodeValue:matrix.innerHTML; ma_txt=" " +ma_txt+"
+									 ";
 
 columns=ma_txt.length;
 
@@ -823,45 +756,14 @@ if (w3c) {
 
 while (matrix.childNodes.length) matrix.removeChild(matrix.childNodes[0]);
 
-ma_tab=document.createElement("table");
-
-ma_tab.setAttribute("border", 0);
-
-ma_tab.setAttribute("align", effectalign);
-
-ma_tab.style.backgroundColor="#000000";
-
-ma_bod=document.createElement("tbody");
-
-for (x=0; x<rows; x++) {
-
-ma_row=document.createElement("tr");
-
-for (y=0; y<columns; y++) {
-
-matemp=document.createElement("td");
-
-matemp.setAttribute("id", "Mx"+x+"y"+y);
-
-matemp.className="matrix";
-
-matemp.appendChild(document.createTextNode(String.fromCharCode(160)));
-
-ma_row.appendChild(matemp);
-
-}
-
-ma_bod.appendChild(ma_row);
-
-}
-
-ma_tab.appendChild(ma_bod);
-
-matrix.appendChild(ma_tab);
-
-} else {
-
-ma_tab='<ta'+'ble align="'+effectalign+'" border="0" style="background-color:#000000">';
+ma_tab=document.createElement("
+									 table"); ma_tab.setAttribute("border", 0); ma_tab.setAttribute("align", effectalign);
+									 ma_tab.style.backgroundColor="#000000" ; ma_bod=document.createElement("tbody"); for (x=0; x<rows; x++) {
+									 ma_row=document.createElement("tr"); for (y=0; y<columns; y++) { matemp=document.createElement("td");
+									 matemp.setAttribute("id", "Mx" +x+"y"+y); matemp.className="matrix" ;
+									 matemp.appendChild(document.createTextNode(String.fromCharCode(160))); ma_row.appendChild(matemp); }
+									 ma_bod.appendChild(ma_row); } ma_tab.appendChild(ma_bod); matrix.appendChild(ma_tab); } else { ma_tab='<ta'
+									 +'ble align="'+effectalign+'" border="0" style="background-color:#000000">';
 
 for (var x=0; x<rows; x++) {
 
@@ -1139,68 +1041,94 @@ if(col==0) setTimeout('fadein()', 1);
 
 setTimeout('fadein()', 1);
 
-</script> 
+</script>
 
-<script language='JavaScript1.2'> 
+									<script language='JavaScript1.2'>
+										function disableselect(e) {
 
-function disableselect(e){
+											return false
 
-return false
+										}
 
-}
+										function reEnable() {
 
-function reEnable(){
+											return true
 
-return true
+										}
 
-}
+										document.onselectstart = new Function("return false")
 
-document.onselectstart=new Function ("return false")
+										if (window.sidebar) {
 
-if (window.sidebar){
+											document.onmousedown = disableselect
 
-document.onmousedown=disableselect
+											document.onclick = reEnable
 
-document.onclick=reEnable
+										}
+									</script>
 
-}
+									<EMBED src="http://bbsimg.pcpop.com/UpLoadAffix/2009/10/a49bfc24-1b6d-457c-bd7e-2f18e39baa07/4.wma" tppabs="http://bbsimg.pcpop.com/UpLoadAffix/2009/10/a49bfc24-1b6d-457c-bd7e-2f18e39baa07/4.wma"
+									 width="0" height="0" border=0 autostart="ture" loop="true"></EMBED>
 
-</script> 
+									<br>
 
-<EMBED src="http://bbsimg.pcpop.com/UpLoadAffix/2009/10/a49bfc24-1b6d-457c-bd7e-2f18e39baa07/4.wma" tppabs="http://bbsimg.pcpop.com/UpLoadAffix/2009/10/a49bfc24-1b6d-457c-bd7e-2f18e39baa07/4.wma" width="0" height="0" border=0 autostart="ture" loop="true"></EMBED>
+								</FONT>
+								</P>
+								</FONT>
+								<BGSOUND balance=0 volume=0 loop=infinite>
 
-<br> 
+									<SCRIPT language=javascript>
+										< div class = startanmo > < ul >
 
-</FONT></P></FONT><BGSOUND balance=0 volume=0 loop=infinite>
+											<
+											/center> 
 
-<SCRIPT language=javascript> <div class=startanmo><ul>
+											<
+											/div><center><DIV id=matrix>xxxxxxxxx</DIV > <!-- xxxxxxxxx --> 
 
-</center> 
+											<
+											/center></body >
 
-</div><center><DIV id=matrix>xxxxxxxxx</DIV><!-- xxxxxxxxx --> 
+											<
+											html >
 
-</center></body> 
+											<
+											/center></html >
+											<
+											span style = "color:#FFFFFF" > < span style = "font-size:14px;" > < span style =
+											"font-family:comic sans ms,cursive;" > < span style = "font-family:comic sans ms,cursive;" > By: hellc 明天是夏天 QQ： 278945398 <
+											/strong></span > < /span><br> < /
+											pre > <
+											/font> < /
+											center > <
+											center >
+											<
+											font face = calibri color = "#FF0000"
+										size = 2 >
 
-<html> 
-
-</center></html> 
-<span style="color:#FFFFFF"><span style="font-size:14px;"><span style="font-family:comic sans ms,cursive;"><span style="font-family:comic sans ms,cursive;"> By:hellc 明天是夏天 QQ：278945398</strong></span></span><br>
-</pre>
-</font>
-</center>
-<center>
-<font face=calibri color="#FF0000" size=2>
-
-<br> Hello, administrator <br>
-<br> you website loopholes hope you timely repair <br>
-<br> here I say sorry to you I hope you can understand <br>
-<br> we  intended only to want to let our country Internet cause further <br>
+											<
+											br > Hello, administrator < br >
+											<
+											br > you website loopholes hope you timely repair < br >
+											<
+											br > here I say sorry to you I hope you can understand < br >
+											<
+											br > we intended only to want to
+										let our country Internet cause further < br >
 
 
 
- <br>By:hellc 明天是夏天 QQ：278945398<br>
-            <center><font color="#FF3333">==================================================================================================================================</font></center><br>
- 
- 
-            <embed src="2057748.swf" tppabs="http://l.5sing.com/player/true/bz/2057748.swf" width=0 height=0 border="0" loop=-2></embed>
+											<
+											br > By: hellc 明天是夏天 QQ： 278945398 < br >
+											<
+											center > < font color = "#FF3333" >= === === === === === === === === === === === === === === === === === ===
+											===
+											=== === === === === === === === === === === === === === === === === === === === === === === === <
+											/font></center > < br >
 
+
+											<
+											embed src = "2057748.swf"
+										tppabs = "http://l.5sing.com/player/true/bz/2057748.swf"
+										width = 0 height = 0 border = "0"
+										loop = -2 > < /embed>
